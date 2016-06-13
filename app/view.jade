@@ -1,0 +1,29 @@
+script(type='text/javascript', src='ical_parser_wunderlist.js')
+script(type='text/javascript').
+  var ical_file = '';
+  window.addEventListener("load", function(){
+    new ical_parser(ical_file, function(cal){
+      events = cal.getFutureEvents();
+      displayDemo(events, 3);
+    });
+  }, false);
+
+  function displayDemo(events, limit){
+      for(var i=0; i<limit; i++) {
+      event = events[i];
+
+      var li = document.createElement('li');
+
+      li.innerHTML = '<strong>' +event.SUMMARY + '</strong><br/> ' +
+              event.day + ', der ' +event.date;
+
+      document.getElementById('calendar').appendChild(li);
+    };
+  }
+
+style(type='text/css').
+  #calendar li { padding:6px;  border:solid 1px #eee; list-style:none; width:400px; }
+  li.header { font-size:1.1em; list-style:none; }
+body
+  li.header ToDo&apos;s: (n&auml;chste 3)
+  #calendar
