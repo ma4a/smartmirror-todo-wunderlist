@@ -15,10 +15,25 @@
   "author": "Matthias Schmidt",
   "license": "",
   "dependencies": {
+    "ical": "^0.5.0"
+  },
+  "devDependencies": {
     "express": "^4.13.4",
     "jade": "^1.11.0"
   },
   "smartmirror": {
-
+    "settings": {
+      "url": {
+        "type": "string",
+        "desc": "URL to Wunderlist.com calendar feed (in settings menu)"
+      },
+      "limit": {
+        "type": "number",
+        "desc": "limit number of shown entries"
+      }
+    },
+    "size": [
+      "4x4"
+    ]
   }
 }
