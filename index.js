@@ -2,6 +2,7 @@
 
 var express = require('express');
 var app = express();
+var fs = require('fs');
 
 var controller = require('./app/controller');
 
@@ -9,13 +10,28 @@ app.set('views', __dirname);
 app.set('view engine', 'jade');
 
 app.get('/', function (req, res) {
-  let url = 'https://a.wunderlist.com/api/v1/ical/xyz-replace-this.ics' //override for test purpose
-  let limit = 4;
-    controller.get({url: url, limit: limit})
-      .then((events) => {
-        res.render('app/view.jade', {
-          events: events
+
+  let pckg = fs.readFileSync('package.json');
+  pckg = JSON.parse(pckg);
+
+  let params = {};
+  params.url = "https://a.wunderlist.com/api/v1/ical/xyz-replace-this.ics"; //override for test purpose
+  params.limit = 4;
+  params.data = true;
+  let widget = {};
+  widget._id = '1234567890';
+  widget.size = pckg.smartmirror.size[0];
+
+    controller.get({params})
+      .then((data) => {
+        res.render('./index.jade', {
+          events: data,
+          widget: widget
         });
+      })
+      .catch((err) => {
+        console.dir(err);
+        res.status(500).send(err);
       });
 });
 
