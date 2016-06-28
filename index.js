@@ -25,7 +25,7 @@ app.get('/', function (req, res) {
     controller.get({params})
       .then((data) => {
         res.render('./index.jade', {
-          events: data,
+          data: data,
           widget: widget
         });
       })
