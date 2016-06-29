@@ -22,7 +22,7 @@ app.get('/', function (req, res) {
   widget._id = '1234567890';
   widget.size = pckg.smartmirror.size[0];
 
-    controller.get({params})
+    controller.get(params)
       .then((data) => {
         res.render('./index.jade', {
           data: data,

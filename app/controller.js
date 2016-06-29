@@ -4,7 +4,6 @@ var ical = require('ical');
 
 exports.get = (params) => {
 
-  var params = params.params;
   var url = params.url;
   var limit = params.limit;
 
