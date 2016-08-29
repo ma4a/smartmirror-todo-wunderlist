@@ -34,6 +34,7 @@
     },
     "size": [
       "4x4"
-    ]
+    ],
+    "gestureSupport": true
   }
 }
